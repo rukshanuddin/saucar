@@ -10,6 +10,11 @@
       "StackName": "amplify-saucar-dev-173452",
       "StackId": "arn:aws:cloudformation:us-east-2:751814252955:stack/amplify-saucar-dev-173452/468ed9e0-f79b-11ea-807f-0224304fe6fa",
       "AmplifyAppId": "d2v2ekur4cjnt8"
+    },
+    "categories": {
+      "auth": {
+        "saucar08a543b9": {}
+      }
     }
   }
 }
