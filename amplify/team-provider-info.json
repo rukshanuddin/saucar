@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-saucar-dev-173452-authRole",
+      "UnauthRoleArn": "arn:aws:iam::751814252955:role/amplify-saucar-dev-173452-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::751814252955:role/amplify-saucar-dev-173452-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-saucar-dev-173452-deployment",
+      "UnauthRoleName": "amplify-saucar-dev-173452-unauthRole",
+      "StackName": "amplify-saucar-dev-173452",
+      "StackId": "arn:aws:cloudformation:us-east-2:751814252955:stack/amplify-saucar-dev-173452/468ed9e0-f79b-11ea-807f-0224304fe6fa",
+      "AmplifyAppId": "d2v2ekur4cjnt8"
+    }
+  }
+}
