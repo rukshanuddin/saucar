@@ -2,68 +2,68 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import { API } from "aws-amplify";
 import { withAuthenticator, AmplifySignOut } from "@aws-amplify/ui-react";
-import { listPosts } from "./graphql/queries";
+import { listNotes } from "./graphql/queries";
 import {
-  createPost as createPostMutation,
-  deletePost as deletePostMutation,
+  createNote as createNoteMutation,
+  deleteNote as deleteNoteMutation,
 } from "./graphql/mutations";
 
 const initialFormState = { name: "", description: "" };
 
 function App() {
-  const [notes, setPosts] = useState([]);
+  const [notes, setNotes] = useState([]);
   const [formData, setFormData] = useState(initialFormState);
 
   useEffect(() => {
-    fetchPosts();
+    fetchNotes();
   }, []);
 
-  async function fetchPosts() {
-    const apiData = await API.graphql({ query: listPosts });
-    setPosts(apiData.data.listPosts.items);
+  async function fetchNotes() {
+    const apiData = await API.graphql({ query: listNotes });
+    setNotes(apiData.data.listNotes.items);
   }
 
-  async function createPost() {
+  async function createNote() {
     if (!formData.name || !formData.description) return;
     await API.graphql({
-      query: createPostMutation,
+      query: createNoteMutation,
       variables: { input: formData },
     });
-    setPosts([...notes, formData]);
+    setNotes([...notes, formData]);
     setFormData(initialFormState);
   }
 
-  async function deletePost({ id }) {
-    const newPostsArray = notes.filter((post) => post.id !== id);
-    setPosts(newPostsArray);
+  async function deleteNote({ id }) {
+    const newNotesArray = notes.filter((note) => note.id !== id);
+    setNotes(newNotesArray);
     await API.graphql({
-      query: deletePostMutation,
+      query: deleteNoteMutation,
       variables: { input: { id } },
     });
   }
 
   return (
     <div className="App">
-      <h1>My Posts App</h1>
+      <h1>My Notes App</h1>
       <input
         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-        placeholder="Post name"
+        placeholder="Note name"
         value={formData.name}
       />
       <input
         onChange={(e) =>
           setFormData({ ...formData, description: e.target.value })
         }
-        placeholder="Post description"
+        placeholder="Note description"
         value={formData.description}
       />
-      <button onClick={createPost}>Create Post</button>
+      <button onClick={createNote}>Create Note</button>
       <div style={{ marginBottom: 30 }}>
-        {notes.map((post) => (
-          <div key={post.id || post.name}>
-            <h2>{post.name}</h2>
-            <p>{post.description}</p>
-            <button onClick={() => deletePost(post)}>Delete post</button>
+        {notes.map((note) => (
+          <div key={note.id || note.name}>
+            <h2>{note.name}</h2>
+            <p>{note.description}</p>
+            <button onClick={() => deleteNote(note)}>Delete note</button>
           </div>
         ))}
       </div>
